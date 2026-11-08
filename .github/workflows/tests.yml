@@ -17,14 +17,10 @@ jobs:
   test-bot:
     strategy:
       matrix:
-        os: [ macos-26 ]
-        include:
-          - os: ubuntu-latest
-            container:
-              image: ghcr.io/homebrew/brew:main
-              options: --privileged
+        # Apple silicon Macs only (the formula says depends_on arch: :arm64). A bottle also pours on newer
+        # macOS versions: arm64 Sequoia covers Sequoia + Tahoe and later.
+        os: [ macos-15 ]
     runs-on: ${{ matrix.os }}
-    container: ${{ fromJSON(toJSON(matrix.container)) }} # zizmor: ignore[unpinned-images]
     permissions:
       actions: read
       checks: read
