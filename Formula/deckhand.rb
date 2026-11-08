@@ -1,10 +1,10 @@
 class Deckhand < Formula
   desc "Host app and web simulator for a cmux/Claude Code macro keypad"
   homepage "https://github.com/zemyblue/homebrew-tap"
-  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.0/deckhand-0.1.0.tar.gz"
-  sha256 "2ef7821607746e87bc390590e3d136f9ebd8b6a4f61e2a1194abd6fc04b345ae"
+  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.1/deckhand-0.1.1.tar.gz"
+  sha256 "0f90f09e5dd2ab4af1934c6b5e15ee490b4750eb2d314c9e20c77ad545d9314f"
 
-  depends_on arch: :arm64  # Apple silicon only: no Intel bottle is built
+  depends_on arch: :arm64 # Apple silicon only: no Intel bottle is built
   depends_on :macos
   depends_on "python@3.14"
 
@@ -31,7 +31,7 @@ class Deckhand < Formula
     %w[pyobjc-core pyobjc-framework-cocoa].each do |r|
       system "unzip", "-q", "-o", resource(r).cached_download, "-d", libexec
     end
-    rm_r libexec/"PyObjCTest"  # pyobjc's own test suite: not needed to run
+    rm_r libexec/"PyObjCTest" # pyobjc's own test suite: not needed to run
     # launch.py sits next to the packages, so Python finds them; -E -s ignores PYTHONPATH and the user's
     # site-packages, so only these files are imported
     (libexec/"launch.py").write <<~PY
@@ -41,7 +41,7 @@ class Deckhand < Formula
     PY
     (bin/"deckhand").write <<~SH
       #!/bin/bash
-      exec "#{Formula["python@3.14"].opt_bin}/python3.14" -E -s "#{libexec}/launch.py" "$@"
+      exec "#{formula_opt_bin("python@3.14")}/python3.14" -E -s "#{libexec}/launch.py" "$@"
     SH
   end
 
@@ -69,7 +69,7 @@ class Deckhand < Formula
     assert_match version.to_s, shell_output("#{bin}/deckhand --version")
     assert_match "--web", shell_output("#{bin}/deckhand simulate --help")
     # the menu bar's AppKit (unpacked pyobjc wheels) imports with the formula's Python
-    system Formula["python@3.14"].opt_bin/"python3.14", "-E", "-s", "-c",
+    system formula_opt_bin("python@3.14")/"python3.14", "-E", "-s", "-c",
            "import sys; sys.path.insert(0, '#{libexec}'); import AppKit, PyObjCTools.AppHelper"
   end
 end
