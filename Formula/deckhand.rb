@@ -1,13 +1,8 @@
 class Deckhand < Formula
   desc "Host app and web simulator for a cmux/Claude Code macro keypad"
   homepage "https://github.com/zemyblue/homebrew-tap"
-  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.3b3/deckhand-0.1.3b3.tar.gz"
-  sha256 "52021cef8fba0e977c48b116639f16afdfcaebb56a960bf9aea8f7044f30ef2a"
-
-  bottle do
-    root_url "https://github.com/zemyblue/homebrew-tap/releases/download/deckhand-0.1.3b3"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ac3a1f9b29344da0e205251e615962d16d4e8262ca3a0aebec5b6f9d9307ed07"
-  end
+  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.4/deckhand-0.1.4.tar.gz"
+  sha256 "9279c8b47099854efdeb37a9870d9bb496c4748a77dc183f5cccbae7225e4053"
 
   depends_on arch: :arm64 # Apple silicon only: no Intel bottle is built
   depends_on :macos
@@ -65,7 +60,9 @@ class Deckhand < Formula
       Check the setup:               deckhand doctor
       Simulator without the keypad:  deckhand simulate --web --demo
       Update:                        brew upgrade deckhand
-                                     then brew services restart deckhand (or log in again)
+                                     then menu bar > "deckhand 다시 시작" (or log in again).
+                                     (brew services restart also works, but macOS then shows its
+                                     "background item" notice again.)
       Undo setup:                    deckhand uninstall
     EOS
   end
