@@ -1,13 +1,8 @@
 class Deckhand < Formula
   desc "Host app and web simulator for a cmux/Claude Code macro keypad"
   homepage "https://github.com/zemyblue/homebrew-tap"
-  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.3b2/deckhand-0.1.3b2.tar.gz"
-  sha256 "2b9e2a7e572057a25138b2b0f37789e74e92d5a44ed58182599ae2abd41ef554"
-
-  bottle do
-    root_url "https://github.com/zemyblue/homebrew-tap/releases/download/deckhand-0.1.3b2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "064b63a9637cee945479aabf1f76b2aa2cf896471cfa4ea670f2f991ae505f2b"
-  end
+  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.3b3/deckhand-0.1.3b3.tar.gz"
+  sha256 "52021cef8fba0e977c48b116639f16afdfcaebb56a960bf9aea8f7044f30ef2a"
 
   depends_on arch: :arm64 # Apple silicon only: no Intel bottle is built
   depends_on :macos
@@ -30,7 +25,7 @@ class Deckhand < Formula
   end
 
   def install
-    libexec.install "deckhand", "deckhand_core"
+    libexec.install "deckhand", "deckhand_core", "circuitpy"
     resource("pyserial").stage { libexec.install "serial" }
     # a wheel is a zip of importable files: unpack it next to the packages (no pip, nothing to build)
     %w[pyobjc-core pyobjc-framework-cocoa].each do |r|
