@@ -4,6 +4,8 @@
 
 zemyblue's Homebrew tap. It carries one program: **deckhand**, the Mac app for the cmux / Claude Code macro keypad.
 
+User guide (keys, screen, LEDs, troubleshooting): <https://zemyblue.github.io/deckhand-guide/>
+
 ## Install
 
 ```sh
