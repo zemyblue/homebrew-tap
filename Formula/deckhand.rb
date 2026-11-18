@@ -4,6 +4,11 @@ class Deckhand < Formula
   url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.5b2/deckhand-0.1.5b2.tar.gz"
   sha256 "c65e5cca23e55eaae9468642c1a440d0aa909c89e8dd385e58a4386d6addeb92"
 
+  bottle do
+    root_url "https://github.com/zemyblue/homebrew-tap/releases/download/deckhand-0.1.5b2"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9552a2d9f9200e000615bce3a14b2ed3432014b22d27a7c9d6ded2d76b4017e7"
+  end
+
   depends_on arch: :arm64 # Apple silicon only: no Intel bottle is built
   depends_on :macos
   depends_on "python@3.14"
