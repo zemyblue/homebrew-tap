@@ -1,13 +1,8 @@
 class Deckhand < Formula
   desc "Host app and web simulator for a cmux/Claude Code macro keypad"
   homepage "https://github.com/zemyblue/homebrew-tap"
-  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.5b/deckhand-0.1.5b.tar.gz"
-  sha256 "9a089e9bb6977b90a86f9c1b074e8d73c7e72fdbafa367c334dcdfd5e6bf9f6b"
-
-  bottle do
-    root_url "https://github.com/zemyblue/homebrew-tap/releases/download/deckhand-0.1.5b"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b150b49942115ccbb1a99599f7cb393d5481d1c919e79cb5f8e8d5a6f34d4ef5"
-  end
+  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.1.5b2/deckhand-0.1.5b2.tar.gz"
+  sha256 "c65e5cca23e55eaae9468642c1a440d0aa909c89e8dd385e58a4386d6addeb92"
 
   depends_on arch: :arm64 # Apple silicon only: no Intel bottle is built
   depends_on :macos
@@ -54,6 +49,10 @@ class Deckhand < Formula
   service do
     run [opt_bin/"deckhand", "device", "--full", "--wait-cmux", "--menubar"]
     keep_alive true
+    # launchd runs an agent at a lowered priority with coalesced timers by default: the voice key's repeats then
+    # come 115 ms apart (measured 2026-11-18), a hair under the 120 ms at which Claude Code sees the key go up,
+    # and over it on a busy Mac. Interactive = scheduled like an app the person is using.
+    process_type :interactive
     environment_variables PATH: std_service_path_env
     log_path var/"log/deckhand.log"
     error_log_path var/"log/deckhand.log"
