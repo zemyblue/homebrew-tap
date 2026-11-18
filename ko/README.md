@@ -4,6 +4,8 @@
 
 zemyblue의 Homebrew tap입니다. 지금 들어 있는 프로그램: **deckhand** (cmux / Claude Code 매크로 키패드의 Mac 프로그램).
 
+사용 설명서 (키, 화면, LED, 문제 해결): <https://zemyblue.github.io/deckhand-guide/ko/>
+
 ## 설치
 
 ```sh
