@@ -1,13 +1,8 @@
 class Deckhand < Formula
   desc "Host app and web simulator for a cmux/Claude Code macro keypad"
   homepage "https://github.com/zemyblue/homebrew-tap"
-  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.2.0b2/deckhand-0.2.0b2.tar.gz"
-  sha256 "b0ddcf5457dee046e4606d1b0db0a972461ab854522e95ffca59b40e79932b07"
-
-  bottle do
-    root_url "https://github.com/zemyblue/homebrew-tap/releases/download/deckhand-0.2.0b2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "31798601586e0c5a4582bed70c7815b7e3f2a938a9b4bdc384083cfe96989131"
-  end
+  url "https://github.com/zemyblue/homebrew-tap/releases/download/v0.2.1/deckhand-0.2.1.tar.gz"
+  sha256 "6b2e94b3c40c0991839541f1c1e6219a294a845a66e09a0cbb51793f7fb4852a"
 
   depends_on arch: :arm64 # Apple silicon only: no Intel bottle is built
   depends_on :macos
